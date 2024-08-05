@@ -15,7 +15,7 @@ Use player orientation for gameobject orientation.
 ### ⚠️ Warning
 
 All gameobject are not supposed to be spawned. (like large building) 
-Thus, some spell models show you a little white and blue cube. 
+Thus, some spell models show you a little white and blue cube while casting. 
 
 ### ⚙️ Tweaks
 
@@ -26,10 +26,10 @@ Obviously it's not really documented so my advice is to see how other spells wor
 
 Edit spawn duration: 
 >Here, gameobjects has no duration, take a look at the column `DurationIndex` in `Spell.dbc` to change that. 
-Pay attention to documentation if you find it, it's an index not a time value. For example : "32" value means 3 seconds.
+Pay attention to documentation if you find, it's an index not a time value. For example : "32" value means 3 seconds.
 
 Edit spell range:
->Take a look at the column `RangeIndex` in `Spell.dbc`, 20 meters -> "3" value, try to find documentation online.
+>Take a look at the column `RangeIndex` in `Spell.dbc`, 20 meters -> "3" value.
 
 # ✨ Installation
 
@@ -37,6 +37,15 @@ We will need to patch `Spell.dbc` in game client and server's dbc.
 
 - [MPQ Editor](http://www.zezula.net/en/mpq/download.html)
 - [DBC Editor](https://github.com/WowDevTools/WDBXEditor/releases)
+
+ We'll do :
+
+- sql import is for creating all gameobject entities.
+- patching `GameObjectDisplayInfo.dbc` is used to be able to see all models in gameobject. In addition with `patch-D.MPQ` for the game client.
+- patching `Spell.dbc` is to register to server's dbc that we have created all building spells. Same, associated MPQ patch is here for game client.
+
+>For information: DBC and MPQ patches here are the same thing. We just must have both server's files and game client files synchronized.
+
 
 Step 1 and 2 are not mine, I taked this from [open-wow repo](https://github.com/Open-Wow/archive/tree/main/Fait/14-all-buildings-models-etc-as-gameobjects).
 
