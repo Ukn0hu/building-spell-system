@@ -10,12 +10,19 @@
 
 Place a gameobject in the game using an AoE spell and build something cool with greater precision and ease !
 
-Use player orientation for gameobject orientation.
+Use **player orientation** for **gameobject orientation**.
 
-### ⚠️ Warning
+Gameobjects ids / Spells ids are from : 
+- **500000** and **539743** 
+- **4000000** and **4002169**
 
-All gameobject are not supposed to be spawned. (like large building) 
-Thus, some spell models show you a little white and blue cube while casting. 
+| <img src="./pics/1.gif"/>   | <img src="./pics/2.gif"/>   |
+| --- | --- |
+
+
+> [!WARNING]
+>- All m2 and wmo models are added but all gameobject are not supposed to be spawned.
+>- Probably all .wmo files are not working. (show you a little white and blue cube during cast)
 
 ### ⚙️ Tweaks
 
@@ -26,10 +33,10 @@ Obviously it's not really documented so my advice is to see how other spells wor
 
 Edit spawn duration: 
 >Here, gameobjects has no duration, take a look at the column `DurationIndex` in `Spell.dbc` to change that. 
-Pay attention to documentation if you find, it's an index not a time value. For example : "32" value means 3 seconds.
+It's an index not a time value. For example : "32" value means 3 seconds.
 
 Edit spell range:
->Take a look at the column `RangeIndex` in `Spell.dbc`, 20 meters -> "3" value.
+>Take a look at the column `RangeIndex` in `Spell.dbc`, "3" value means 20 meters.
 
 # ✨ Installation
 
@@ -38,17 +45,10 @@ We will need to patch `Spell.dbc` in game client and server's dbc.
 - [MPQ Editor](http://www.zezula.net/en/mpq/download.html)
 - [DBC Editor](https://github.com/WowDevTools/WDBXEditor/releases)
 
- We'll do :
-
-- sql import is for creating all gameobject entities.
-- patching `GameObjectDisplayInfo.dbc` is used to be able to see all models in gameobject. In addition with `patch-D.MPQ` for the game client.
-- patching `Spell.dbc` is to register to server's dbc that we have created all building spells. Same, associated MPQ patch is here for game client.
 
 >For information: DBC and MPQ patches here are the same thing. We just must have both server's files and game client files synchronized.
 
-
 Step 1 and 2 are not mine, I taked this from [open-wow repo](https://github.com/Open-Wow/archive/tree/main/Fait/14-all-buildings-models-etc-as-gameobjects).
-
 
 1. Import `gameobject_template.sql` to the world database (29324 gameobjects in total)
 2. Allows you to see and add all the 3d models of the game in the form of a gameobject.
@@ -69,10 +69,11 @@ Step 1 and 2 are not mine, I taked this from [open-wow repo](https://github.com/
         5. Put it in Wow client
 4. Done ! go check if it's working
 
->Pay attention to localized game client, you need to extract your DBC yourself instead of download enUS dbc files online.
->
->I've don't see any core extractors binaries online so you need to generate them.
-
+> [!TIP]
+> Pay attention to localized game client, you need to extract your DBC yourself instead of download enUS dbc files online.
+> 
+> I've don't see any core extractors binaries online so you need to generate them.
+___
 ### 🔥 How to generate core extractors (optionnal for enUS game client)
 **You need to be able to compile your core server.**
 1. Open CMake and find `"TOOLS"` in configuration, tick it.
@@ -80,25 +81,30 @@ Step 1 and 2 are not mine, I taked this from [open-wow repo](https://github.com/
 3. Now, its time to build the server, right click to `ALL_BUILD->generate`
 
 The extractors will be generated in the directory where your `authserver.exe` and `worldserver.exe` are generated.
+
 (`azerothcore/build/bin/RelWithDebInfo/...` or `azerothcore/build/bin/Release/...`)
+
+Now use it in your game client to extract
 
 # 📖 Usage
 ### 🏞️ Ingame
-Now ingame you can `.lookup spell <gameobject_name>` and `.learn ID` to try some building. (shift+left click just after you write `.learn ...` to do not have to write the spell ID)
+Now ingame you can `.lookup spell <gameobject_name>` and `.learn ID` to try some building. 
+
+(shift+left click just after you write `.learn ...` to do not have to write the spell ID)
+
 Short version: `.lo sp <gameobject_name>`
-⬆️ Use ALT+UpArrow to get older chat msg when taping msg ingame. It's helps.
+
+Use ALT+⬆️ or ALT+⬇️ (ALT + UpArrow or DownArrow) to get older chat msg when taping msg ingame. It's helps.
 
 ### 👍 Searching models
 You can use wow.tools or WoW Model Viewer 0.7.x (supporting WOTLK).
-I used the genuine name for each model to make it easy to search. You are free to change.
 
-### 👍 Use added gameobject
-Gameobjects ids are from : 500000 and 539743 and 4000000 and 4002169
+I used the genuine name for each model to make it easy to search. You are free to change.
 
 ### 👍 Add custom building spell
 Use the `template.csv` to create your own building spell.
-With this, you have to follow the step 3 of the installation process to add your own spell.
 
+With this, you have to follow the step 3 of the installation process to add your own spell.
 
 | TO DO CHANGE                  | Description                     |
 | ----------------------------- | ------------------------------- |
@@ -113,7 +119,6 @@ With this, you have to follow the step 3 of the installation process to add your
 | [enUS AURA DESCRIPTION SPELL] | original aura description spell |
 | [frFR AURA DESCRIPTION SPELL] | french aura description spell   |
 
-
 For further usage you can :
 - create a c++ spell script or lua script to 
 	- persist it in database when you spawn a gameobject.
@@ -125,5 +130,5 @@ For further usage you can :
 
 # 🫶 Credit 
 
-- Saperlipopute (✌️)
+- Ukn0hu
 - Dark_Spyro_003 (for original content of gameobjects patch)
