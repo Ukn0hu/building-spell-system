@@ -84,7 +84,7 @@ The extractors will be generated in the directory where your `authserver.exe` an
 
 (`azerothcore/build/bin/RelWithDebInfo/...` or `azerothcore/build/bin/Release/...`)
 
-Now use it in your game client to extract
+Now use it in your game client to extract your DBC files, and for after that use them [instead of downloading them already made (here is for azerothcore)](https://github.com/wowgaming/client-data/releases/).
 
 # 📖 Usage
 ### 🏞️ Ingame
